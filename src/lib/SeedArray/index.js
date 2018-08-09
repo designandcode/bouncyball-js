@@ -6,18 +6,15 @@
 export default function SeedArray (total, dist) {
 
     // Create a new empty array to fill and return
-    let seededArray = [];
+    let seededArray = []
 
-    let distribution = {}
-
-    // Create an object where we will calculate the total
-    // number of element types to fill the seededArray
+    // Convert fraction to number based on total
     for (let i = 0; i < dist.length; i++) {
       let element = dist[i];
 
       for (el in element) {
         if (element.hasOwnProperty(el)) {
-          distribution[el] = Math.round(element[el] * total);
+          element[el] = Math.round(element[el] * total);
         }
       }
     }    
@@ -33,8 +30,8 @@ export default function SeedArray (total, dist) {
 
       // Decrease the available amount of this element type by 1
       // until there are no more of this element type available
-      if (distribution[element] > 0) {
-        distribution[element]--;
+      if (el[element] > 0) {
+        el[element]--;
       } else {
         // If there are no more of this type available, remove it
         // from being selected randomly, then select a remaining
